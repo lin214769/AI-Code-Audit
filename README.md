@@ -21,7 +21,7 @@ AI 代码审计插件，基于 DeepSeek、OpenAI、Anthropic 等大语言模型�
 
 ### 配置
 
-1. 获取 API Key（推荐 DeepSeek，免费额度充足）
+1. 获取 API Key（推荐 DeepSeekv4flash）
 2. 在 VS Code 设置中配置：
    - `ai-code-audit.apiProvider`: 选择 AI 提供商
    - `ai-code-audit.apiKey`: 输入你的 API Key
@@ -41,12 +41,12 @@ AI 代码审计插件，基于 DeepSeek、OpenAI、Anthropic 等大语言模型�
 
 ## 🔧 支持的 AI 提供商
 
-| 提供商 | 模型 | 推荐 |
-|--------|------|------|
-| DeepSeek | deepseek-v4-flash | ✅ 推荐（免费额度充足） |
-| OpenAI | gpt-4o, gpt-4o-mini | 🔄 需要 API Key |
-| Anthropic | claude-3-5-sonnet | 🔄 需要 API Key |
-| Custom | 自定义 OpenAI 兼容接口 | 🔧 自定义部署 |
+ 提供商 
+
+ DeepSeek 
+ OpenAI 
+ Anthropic 
+ Custom 
 
 ## 📋 审计维度
 
