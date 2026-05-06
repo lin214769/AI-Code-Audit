@@ -1,0 +1,202 @@
+{
+  "name": "ai-code-audit",
+  "displayName": "AI Code Audit",
+  "description": "AI-powered code audit and security analysis tool",
+  "version": "1.0.0",
+  "publisher": "code-audit-team",
+  
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "code audit",
+    "security",
+    "linting",
+    "AI",
+    "DeepSeek",
+    "OpenAI",
+    "Anthropic",
+    "vulnerability",
+    "bug detection"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/ai-code-audit.git"
+  },
+  "homepage": "https://github.com/your-username/ai-code-audit",
+  "bugs": {
+    "url": "https://github.com/your-username/ai-code-audit/issues"
+  },
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:ai-code-audit.analyzeFile",
+    "onCommand:ai-code-audit.fixIssue",
+    "onCommand:ai-code-audit.analyzeWorkspace",
+    "onCommand:ai-code-audit.openReport"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ai-code-audit.analyzeFile",
+        "title": "🔍 Analyze Current File",
+        "category": "AI Code Audit"
+      },
+      {
+        "command": "ai-code-audit.fixIssue",
+        "title": "🔧 Fix Selected Issue",
+        "category": "AI Code Audit"
+      },
+      {
+        "command": "ai-code-audit.analyzeWorkspace",
+        "title": "📁 Analyze Workspace",
+        "category": "AI Code Audit"
+      },
+      {
+        "command": "ai-code-audit.openReport",
+        "title": "📋 Open Audit Report",
+        "category": "AI Code Audit"
+      }
+    ],
+    "configuration": {
+      "title": "AI Code Audit",
+      "properties": {
+        "ai-code-audit.apiProvider": {
+          "type": "string",
+          "default": "deepseek",
+          "enum": [
+            "deepseek",
+            "openai",
+            "anthropic",
+            "custom"
+          ],
+          "description": "AI API provider"
+        },
+        "ai-code-audit.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "API key for the selected provider"
+        },
+        "ai-code-audit.model": {
+          "type": "string",
+          "default": "deepseek-v4-flash",
+          "description": "Model name to use for auditing"
+        },
+        "ai-code-audit.customBaseUrl": {
+          "type": "string",
+          "default": "",
+          "description": "Custom API base URL (for custom provider)"
+        },
+        "ai-code-audit.maxTokens": {
+          "type": "integer",
+          "default": 4096,
+          "description": "Maximum tokens for API response"
+        },
+        "ai-code-audit.temperature": {
+          "type": "number",
+          "default": 0.1,
+          "description": "Temperature for AI responses"
+        },
+        "ai-code-audit.auditOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically audit file on save"
+        },
+        "ai-code-audit.autoFix": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically apply fixes (experimental)"
+        },
+        "ai-code-audit.categories": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "security",
+              "bugs",
+              "performance",
+              "maintainability",
+              "bestPractices"
+            ]
+          },
+          "default": [
+            "security",
+            "bugs",
+            "performance"
+          ],
+          "description": "Categories to audit"
+        }
+      }
+    },
+    "problemMatchers": [
+      {
+        "name": "ai-code-audit",
+        "pattern": {
+          "regexp": "^(.*):(\\d+):\\s*(error|warning|info):\\s*(.*)$",
+          "file": 1,
+          "line": 2,
+          "severity": 3,
+          "message": 4
+        }
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "ai-code-audit.analyzeFile",
+          "when": "resourceExtname =~ /\\.(js|ts|jsx|tsx|py)$/",
+          "group": "ai-code-audit"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "ai-code-audit.analyzeFile",
+          "when": "resourceExtname =~ /\\.(js|ts|jsx|tsx|py)$/",
+          "group": "ai-code-audit"
+        },
+        {
+          "command": "ai-code-audit.fixIssue",
+          "when": "resourceExtname =~ /\\.(js|ts|jsx|tsx|py)$/",
+          "group": "ai-code-audit"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "ai-code-audit.analyzeFile",
+        "key": "Ctrl+Shift+A",
+        "mac": "Cmd+Shift+A",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "ai-code-audit.fixIssue",
+        "key": "Ctrl+Shift+F",
+        "mac": "Cmd+Shift+F",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "start": "node src/cli.js",
+    "build": "vsce package",
+    "watch": "nodemon src/cli.js",
+    "test": "jest",
+    "publish": "vsce publish"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "chokidar": "^3.6.0",
+    "dotenv": "^16.4.5",
+    "prettier": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.8",
+    "@types/vscode": "^1.80.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.4",
+    "vsce": "^2.15.0"
+  }
+}
