@@ -18,6 +18,7 @@ AI 代码审计插件，基于 DeepSeek、OpenAI、Anthropic 等大语言模型�
 
 1. 在 VS Code 扩展市场搜索 "AI Code Audit" 安装
 2. 或下载 VSIX 文件手动安装
+[Download VSIX](https://github.com/lin214769/AI-Code-Audit/releases/download/v1.0.0/ai-code-audit-1.0.0.vsix)
 
 ### 配置
 
